@@ -9,7 +9,7 @@
  > You will be forming a group of **FOUR** students and working on an interesting project. The project has 4 phases, each one with specific requirements. A list of proposed project ideas that have been successful in previous quarters is listed in the project specifications document on Canvas. You can select an idea from the list and start thinking about the features you will implement. If you want to propose your own original idea, you will have to contact your instructor to discuss the project and obtain written permission before you submit your project proposal (Phase 1). The project work should be divided almost equally among team members. You can of course help each other, but it needs to be clear who will be responsible for which features. Additionally, you are expected to follow Scrum patterns, specifically the use of a Scrum (Project) board, Sprints, and Scrum meetings.
 
  > ## Expectations
- > * The backend of your project should be implemented in C++. If you wish to choose anoher programming language (e.g. Java, Python), please discuss with your lab TA to obtain permission.
+ > * The backend of your project should be implemented in C++. If you wish to choose another programming language (e.g. Java, Python), please discuss with your lab TA to obtain permission.
  > * You can incorporate additional technologies/tools but they must be approved (in writing) by the instructor or the TA.
  > * Each member of the group **must** be committing code regularly and make sure their code is correctly attributed to them. We will be checking attributions to determine if there was equal contribution to the project.
  > * **Each member of the group must actively participate in the Github Project board, writing unit tests, and reviewing commited code.**
@@ -24,6 +24,10 @@
  > This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted. 
  > 
  > You also need to set up an empty project board using GitHub projects (board view with default columns). Make sure you add the board under your project repository. You should also have a Product Backlog and In testing columns added. All columns should be in the right order.
+> Description: User-run, fun-based trivia application meant for events like game nights and trivia nights. Users can create categorized quizzes involving flashcards with trivia questions and their respective answers.
+> Input: User enters a trivia question with four answers (a-d), with one answer being the correct one.
+> Output: Once a user selects an answer, the application will output whether or not that answer is correct, and if it is not, the application outputs the correct answer.
+> Features: Can give each quiz a name. can shuffle flashcards in quiz, etc.
  > ## Phase II
  > In addition to completing the "User Interface Specification" and "Class Diagram" sections below, you will need to:
  > * Create an "Epic" (note) for each feature. Place these epics in the `Product Backlog` column
