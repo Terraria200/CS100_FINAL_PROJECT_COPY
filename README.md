@@ -24,9 +24,13 @@
  > This description should be in enough detail that the TA/instructor can determine the complexity of the project and if it is sufficient for the team members to complete in the time allotted. 
  > 
  > You also need to set up an empty project board using GitHub projects (board view with default columns). Make sure you add the board under your project repository. You should also have a Product Backlog and In testing columns added. All columns should be in the right order.
+>
 > Description: User-run, fun-based trivia application meant for events like game nights and trivia nights. Users can create categorized quizzes involving flashcards with trivia questions and their respective answers.
+>
 > Input: User enters a trivia question with four answers (a-d), with one answer being the correct one.
+>
 > Output: Once a user selects an answer, the application will output whether or not that answer is correct, and if it is not, the application outputs the correct answer.
+>
 > Features: Can give each quiz a name. can shuffle flashcards in quiz, etc.
  > ## Phase II
  > In addition to completing the "User Interface Specification" and "Class Diagram" sections below, you will need to:
