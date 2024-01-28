@@ -1,7 +1,7 @@
  > As you complete each section you **must** remove the prompt text. Every *turnin* of this project includes points for formatting of this README so keep it clean and keep it up to date. 
  > Prompt text is any lines beginning with "\>"
  > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
-# \<Project title\>
+# The Mind Meld
  > Your author list below should include links to all members GitHub (remove existing author).
  
  > Authors: [Gavin Wilson](https://github.com/EyeAmTheOne), [Haroon Ahamed](https://github.com/Terraria200), [Keanu Wilson](https://github.com/5i1v3rf0x), and [Nicholas Stermer](https://github.com/nicholasstermer)
