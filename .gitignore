@@ -1,0 +1,22 @@
+# Ignore CMake build directory
+CMakeFiles/
+bin/
+lib/
+
+# Ignore CMake files
+CMakeCache.txt
+cmake_install.cmake
+
+# Ignore Makefile
+Makefile
+
+# Ignore Library file
+src/libsimpleLibrary.a
+
+# Ignore src and test CMake-related files
+src/CMakeFiles/
+src/Makefile
+src/cmake_install.cmake
+test/CMakeFiles/
+test/Makefile
+test/cmake_install.cmake
