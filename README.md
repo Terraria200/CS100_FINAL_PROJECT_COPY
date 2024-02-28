@@ -14,7 +14,7 @@
 ## User Interface Specification
 
 ### Navigation Diagram
-![image](https://github.com/cs100/final-project-gwils018-haham003-kwils076-nster005/assets/68349014/004fd452-82ab-4303-b083-17c4d06562f2)
+![image](https://github.com/cs100/final-project-gwils018-haham003-kwils076-nster005/assets/68349014/94fc9238-112a-430f-a41d-d00e63f110c3)
 
 ### Screen Layouts
 ![image](https://github.com/cs100/final-project-gwils018-haham003-kwils076-nster005/assets/68349014/248348db-0cd8-40b2-8975-ae138a8ec9c2)
