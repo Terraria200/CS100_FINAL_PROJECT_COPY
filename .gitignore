@@ -2,6 +2,7 @@
 CMakeFiles/
 bin/
 lib/
+build/
 
 # Ignore CMake files
 CMakeCache.txt
