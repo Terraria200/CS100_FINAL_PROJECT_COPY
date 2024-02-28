@@ -20,7 +20,7 @@
 ![image](https://github.com/cs100/final-project-gwils018-haham003-kwils076-nster005/assets/68349014/248348db-0cd8-40b2-8975-ae138a8ec9c2)
 
 ## Class Diagram
-![image](https://github.com/cs100/final-project-gwils018-haham003-kwils076-nster005/assets/68349014/a29639f1-fb5c-4f47-9624-66b35c0881f9)
+![image](https://github.com/cs100/final-project-gwils018-haham003-kwils076-nster005/assets/68349014/3de886ea-0143-4c31-972e-cf1b8a0d50c5)
 
 Our Quiz Class allows us to create a quiz from scratch or upload one. Our questions will be made into a vector with each one being a Question object, our score will be tracked and changed using an integer variable, and our user inputted answers will all be typed into a string variable. Each question has a string that is the content of the question and another string with it's correct answer, and we have several member functions to set the correct answer, check the user inputted answer against the correct answer, and then change the score based on whether or not the answer was correct or not. Under the Question class, we have separate classes for our separate types of questions: multiple choice, fill-in-the-blank, and True or False. For Multiple Choice, we have a vector of strings for our 4 options (a-d), and we can also shuffle the mutiple choice options around with shuffleOptions(). For Fill-in-the-Blank and True/False, we simply check the user-inputted answer against the correct answer before changing the score based on whether the user had the right answer or not. For Fill-in-the-Blank, we may also use the toUpper() function to remove the need for correct capitalization.
  
