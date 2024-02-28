@@ -18,6 +18,7 @@
 
 ### Screen Layouts
 ![image](https://github.com/cs100/final-project-gwils018-haham003-kwils076-nster005/assets/68349014/248348db-0cd8-40b2-8975-ae138a8ec9c2)
+![image](https://github.com/cs100/final-project-gwils018-haham003-kwils076-nster005/assets/68349014/9dd53fcc-62b4-4b24-a3b4-b8aae0703a25)
 
 ## Class Diagram
 ![image](https://github.com/cs100/final-project-gwils018-haham003-kwils076-nster005/assets/68349014/d4596197-86cc-44af-bdab-753c53b34e99)
