@@ -5,6 +5,7 @@ add_library(simpleLibrary
   Question.cpp
   Quiz.cpp
   QuizConstructor.cpp
+  QuizConstructor_From_TXT.cpp
   True-or-False.cpp
 )
 
