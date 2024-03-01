@@ -1,10 +1,11 @@
-#include <string>
 #include "../header/Question.h"
 
-class FillInTheBlank: public Question {
+class FillInTheBlank : public Question {
     private:
+    std::string answer;
 
     public:
-        FillInTheBlank();
-
+        FillInTheBlank(std::string content, int score, std::string answer);
+        bool checkAnswer(std::string answer);
+        std::string GetAnswer();
 };
