@@ -1,4 +1,5 @@
 #include "../header/Quiz.h"
+#include <cassert>
 
 // Constructor
 Quiz::Quiz() {
@@ -44,4 +45,34 @@ void Quiz::clear() {
         delete question;
     }
     questions.clear();
+}
+
+// Display a question
+void Quiz::displayQuestion(unsigned i, std::ostream& os) {
+    os << i + 1 << ". " << questions[i]->getQuestion() << std::endl;
+}
+
+// Display all the questions
+void Quiz::displayQuestions(std::ostream& os) {
+    for (unsigned i = 0; i < questions.size(); i++) {
+        displayQuestion(i, os);
+    }
+}
+
+// Edit a question
+void Quiz::editQuestion(unsigned i, Question* question) {
+    // editQuestion should never be called with an index out of range
+    assert(i < questions.size() && "Index out of range");
+
+    delete questions[i];
+    questions[i] = question;
+}
+
+// Remove a question
+void Quiz::removeQuestion(unsigned i) {
+    // removeQuestion should never be called with an index out of range
+    assert(i < questions.size() && "Index out of range");
+
+    delete questions[i];
+    questions.erase(questions.begin() + i);
 }

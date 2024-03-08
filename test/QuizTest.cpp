@@ -57,3 +57,54 @@ TEST(QuizTest, multipleQuestions) {
 
     EXPECT_EQ(4, quiz.getScore());
 }
+
+// Test display question
+TEST(QuizTest, displayQuestion) {
+    Quiz quiz;
+    Question* question = new QuestionStub("What is 1 + 1?", "2", 1);
+    quiz.addQuestion(question);
+    std::stringstream os;
+
+    quiz.displayQuestion(0, os);
+    EXPECT_EQ("1. What is 1 + 1?\n", os.str());
+}
+
+// Test display questions
+TEST(QuizTest, displayQuestions) {
+    Quiz quiz;
+    Question* question1 = new QuestionStub("What is 1 + 1?", "2", 1);
+    Question* question2 = new QuestionStub("What is 2 + 2?", "4", 1);
+    quiz.addQuestion(question1);
+    quiz.addQuestion(question2);
+    std::stringstream os;
+
+    quiz.displayQuestions(os);
+    EXPECT_EQ("1. What is 1 + 1?\n2. What is 2 + 2?\n", os.str());
+}
+
+// Test edit question
+TEST(QuizTest, editQuestion) {
+    Quiz quiz;
+    Question* question = new QuestionStub("What is 1 + 1?", "2", 1);
+    quiz.addQuestion(question);
+    Question* newQuestion = new QuestionStub("What is 2 + 2?", "4", 1);
+    quiz.editQuestion(0, newQuestion);
+    std::stringstream os;
+
+    quiz.displayQuestion(0, os);
+    EXPECT_EQ("1. What is 2 + 2?\n", os.str());
+}
+
+// Test remove question
+TEST(QuizTest, removeQuestion) {
+    Quiz quiz;
+    Question* question1 = new QuestionStub("What is 1 + 1?", "2", 1);
+    Question* question2 = new QuestionStub("What is 2 + 2?", "4", 1);
+    quiz.addQuestion(question1);
+    quiz.addQuestion(question2);
+    quiz.removeQuestion(0);
+    std::stringstream os;
+
+    quiz.displayQuestions(os);
+    EXPECT_EQ("1. What is 2 + 2?\n", os.str());
+}
