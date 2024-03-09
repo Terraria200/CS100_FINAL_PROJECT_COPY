@@ -21,29 +21,14 @@
 ![image](https://github.com/cs100/final-project-gwils018-haham003-kwils076-nster005/assets/68349014/9dd53fcc-62b4-4b24-a3b4-b8aae0703a25)
 
 ## Class Diagram
-![image](https://github.com/cs100/final-project-gwils018-haham003-kwils076-nster005/assets/68349014/d4596197-86cc-44af-bdab-753c53b34e99)
+![image](https://github.com/cs100/final-project-gwils018-haham003-kwils076-nster005/assets/68349014/14cc89b8-b6a3-42ab-ab76-e399514fddab)
 
 Our Quiz Class allows us to create a quiz from scratch or upload one. Our questions will be made into a vector with each one being a Question object, our score will be tracked and changed using an integer variable, and our user inputted answers will all be typed into a string variable. Each question has a string that is the content of the question and another string with it's correct answer, and we have several member functions to set the correct answer, check the user inputted answer against the correct answer, and then change the score based on whether or not the answer was correct or not. Under the Question class, we have separate classes for our separate types of questions: multiple choice, fill-in-the-blank, and True or False. For Multiple Choice, we have a vector of strings for our 4 options (a-d), and we can also shuffle the mutiple choice options around with shuffleOptions(). For Fill-in-the-Blank and True/False, we simply check the user-inputted answer against the correct answer before changing the score based on whether the user had the right answer or not. For Fill-in-the-Blank, we may also use the toUpper() function to remove the need for correct capitalization.
  
- > ## Phase III
- > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
- 
- > BEFORE the meeting you should do the following:
- > * Update your class diagram from Phase II to include any feedback you received from your TA/grader.
- > * Considering the SOLID design principles, reflect back on your class diagram and think about how you can use the SOLID principles to improve your design. You should then update the README.md file by adding the following:
- >   * A new class diagram incorporating your changes after considering the SOLID principles.
- >   * For each update in your class diagram, you must explain in 3-4 sentences:
- >     * What SOLID principle(s) did you apply?
- >     * How did you apply it? i.e. describe the change.
- >     * How did this change help you write better code?
- > * Perform a new sprint plan like you did in Phase II.
- > * You should also make sure that your README file (and Project board) are up-to-date reflecting the current status of your project and the most recent class diagram. Previous versions of the README file should still be visible through your commit history.
- 
-> During the meeting with your reader you will discuss: 
- > * How effective your last sprint was (each member should talk about what they did)
- > * Any tasks that did not get completed last sprint, and how you took them into consideration for this sprint
- > * Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
- > * What tasks you are planning for this next sprint.
+SOLID Principle Changes explanation:
+* Single responsibility - The Quiz constructor was originally responsible for uploading and downloading both JSON and TXT files, we separated the two file types into separate classes that inherit from a QuizConstructor interface.  This helped us by categorizing the behaviors for each type of QuizConstructor,and will also allow us to create more types in the future.
+* Interface segregation - Originally, the Question class was originally forcing each subclass to have a string implementation for their answer, this did not make sense so we removed the implementation from the interface and put them into the individual subclasses.  This allows each subclass to implement its own type of answer that works better with the behavior that is specific to that subclass.
+* Dependency inversion - Originally, the Quiz class methods would output to the std cout and take inputs from the std cin.  Rather than doing this now, we have changed the method to take references to input and output streams as parameters, which allows us to not depend on which specific stream we are outputting the quiz display to.  This has helped us while devoloping because it allowed us to more easily write tests for this function, and it gives the function more flexibility with what it is capable of.
 
  
  > ## Final deliverable
