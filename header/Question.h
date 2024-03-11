@@ -1,3 +1,6 @@
+#ifndef QUESTION_HPP
+#define QUESTION_HPP
+
 #include <string>
 class Question {
     private:
@@ -13,3 +16,5 @@ class Question {
         int getScore();
         virtual bool checkAnswer(std::string answer) = 0;
 };
+
+#endif

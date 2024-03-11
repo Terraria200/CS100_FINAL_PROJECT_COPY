@@ -3,6 +3,8 @@
 #define QUIZCONSTRUCTOR_HPP
 
 #include<cstdlib>
+#include "Quiz.h"
+#include "True-or-False.h"
 using namespace std;
 
 class QuizConstructor{
@@ -13,7 +15,7 @@ class QuizConstructor{
         Quiz *JsonToQuiz(string filename);
         void setAnswer();
         void editQuestion();
-}
+};
 
 
 #endif
