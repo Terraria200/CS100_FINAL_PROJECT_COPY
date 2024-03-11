@@ -1,3 +1,6 @@
+#ifndef QUIZ_H
+#define QUIZ_H
+
 #include <vector>
 #include <iostream>
 #include "../header/Question.h"
@@ -10,6 +13,7 @@ public:
     Quiz();
     void addQuestion(Question* question);
     void removeQuestion(unsigned index);
+    int getNumQuestions();
     void displayQuestions(std::ostream& os);
     void displayQuestion(unsigned index, std::ostream& os);
     void editQuestion(unsigned index, Question* question);
@@ -19,3 +23,5 @@ public:
     void clear();
     ~Quiz();
 };
+
+#endif

@@ -76,3 +76,8 @@ void Quiz::removeQuestion(unsigned i) {
     delete questions[i];
     questions.erase(questions.begin() + i);
 }
+
+// Get the number of questions
+int Quiz::getNumQuestions() {
+    return questions.size();
+}

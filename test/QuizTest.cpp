@@ -1,12 +1,13 @@
 #include "gtest/gtest.h"
 #include "../header/Quiz.h"
+#include "../header/True-or-False.h"
 
 // Include the files name in the cmakelists file in the test folder, then include the header file here
 
 // Question class stub
-class QuestionStub : public Question {
+class QuestionStub : public TrueOrFalse {
     public:
-        QuestionStub(std::string content, std::string answer, int score) : Question(content, answer, score) {}
+        QuestionStub(std::string content, std::string answer, int score) : TrueOrFalse(content, score, true) {}
         bool checkAnswer(std::string answer) {
             return true;
         }
