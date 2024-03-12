@@ -10,7 +10,8 @@ void QuizConstructor::setAnswer(){
     getline(cin, correctAnswer);
 }
 
-void QuizConstructor::editQuestion(){
+int QuizConstructor::editQuestion(){ // 0 means successfully reached end, 1 means didn't successfully reach end
+    int r = 1;
     int questionToEdit;
     char menuChoice = 'g';
     char answerToEdit;
@@ -48,6 +49,7 @@ void QuizConstructor::editQuestion(){
                 }
                 else if(menuChoice == 'm'){
                     menuChoice = 'q'; // Quit out of the editing process
+                    r = 0;
                 }
                 else {
                     menuChoice == 'b'; // Not a valid question number, so try edit process again
@@ -58,4 +60,6 @@ void QuizConstructor::editQuestion(){
             }
         }
     }
+
+    return r;
 }

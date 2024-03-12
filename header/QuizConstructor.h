@@ -12,7 +12,7 @@ class QuizConstructor{
         QuizConstructor();
         Quiz *JsonToQuiz(string filename);
         void setAnswer();
-        void editQuestion();
+        int editQuestion();
 }
 
 
