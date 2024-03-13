@@ -11,6 +11,7 @@ private:
     unsigned score;
 public:
     Quiz();
+    std::vector<Question*> getQuestions();
     void addQuestion(Question* question);
     void removeQuestion(unsigned index);
     int getNumQuestions();

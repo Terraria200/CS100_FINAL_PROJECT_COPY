@@ -7,4 +7,6 @@ public:
     TrueOrFalse(std::string content, int score, bool answer);
     bool checkAnswer(std::string answer);
     std::string getAnswer();
+    bool getBoolAnswer();
+    std::string getType();
 };

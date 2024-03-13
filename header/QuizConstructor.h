@@ -12,9 +12,14 @@ class QuizConstructor{
         Quiz *quiz;
     public:
         QuizConstructor();
-        Quiz *JsonToQuiz(string filename);
+        Quiz *JSONToQuiz(string filename);
+        void quizToJSON(Quiz *quiz, string filename);
         void setAnswer();
         void editQuestion();
+
+        Question* createTrueOrFalse(string question, int score, bool answer);
+        Question* createMultipleChoice(string question, vector<string> options, int score, int answer);
+        Question* createFillInTheBlank(string question, int score, string answer);
 };
 
 
