@@ -6,6 +6,7 @@ add_subdirectory(googletest)
 add_executable(runAllTests
     QuizTest.cpp
     TrueFalseTest.cpp
+    QuizManagerTest.cpp
 )
 
 target_link_libraries(runAllTests gmock gtest gtest_main)

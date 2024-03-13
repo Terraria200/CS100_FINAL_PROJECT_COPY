@@ -15,6 +15,10 @@ class QuizConstructor{
         Quiz *JsonToQuiz(string filename);
         void setAnswer();
         void editQuestion();
+
+        Question* createTrueFalseQuestion(ostream &os, istream &is);
+        Question* createMultipleChoiceQuestion(ostream &os, istream &is);
+        Question* createFillInTheBlankQuestion(ostream &os, istream &is);
 };
 
 

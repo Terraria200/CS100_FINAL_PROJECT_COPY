@@ -71,3 +71,28 @@ void QuizConstructor::editQuestion(){
         }
     }
 }
+
+Question* QuizConstructor::createTrueFalseQuestion(ostream &os, istream &is){
+    string question;
+    string answer;
+    int score;
+
+    os << "Enter the question: ";
+    getline(is, question);
+    os << "Enter the answer: ";
+    getline(is, answer);
+
+    // Turn answer into a boolean
+    if(answer == "true"){
+        answer = "1";
+    }
+    else if(answer == "false"){
+        answer = "0";
+    }
+    else{
+        os << "Invalid answer. Please enter either 'true' or 'false'." << endl;
+        return nullptr;
+    }
+
+    return new TrueOrFalse(question, score, stoi(answer));
+}
