@@ -1,13 +1,14 @@
-<<<<<<< HEAD
 #include <iostream>
 #include "../header/Quiz.h"
+#include "../header/QuizManager.h"
 
 int main()
 {
+    QuizManager quiz_list;
+    
     char menuInput = 'z';
     do
     {
-        
         std::cout << "The Mind Meld" << std::endl;
         std::cout << "Press 't' to take a quiz, 'u' to upload a quiz, 'e' to edit a quiz, or 'q' to quit: ";
 
@@ -28,6 +29,7 @@ int main()
         else if (menuInput == 'q')
         {
             //Do nothing and keep menu input set to q
+            std::cout << "Goodbye!" << std::endl;
         }
         else
         {
@@ -37,15 +39,3 @@ int main()
 
     return 0;
 }
-=======
-#include "../header/Quiz.h"
-#include "../header/QuizConstructor.h"
-#include "../header/QuizManager.h"
-#include <iostream>
-
-int main() {
-    QuizManager quizManager;
-    quizManager.run(std::cout, std::cin);
-    return 0;
-}
->>>>>>> master
