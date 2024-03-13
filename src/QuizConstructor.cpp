@@ -1,4 +1,5 @@
 #include "../header/QuizConstructor.h"
+#include <gtest/gtest.h>
 
 QuizConstuctor::QuizConstructor(){
 }
