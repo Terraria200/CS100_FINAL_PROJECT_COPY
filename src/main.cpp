@@ -1,17 +1,17 @@
 #include <iostream>
+#include "../header/Quiz.h"
 
 int main()
 {
-    std::ostream output;
-    std::istream input;
-
-    output << "The Mind Meld" << std::endl;
-    output << "Press 't' to take a quiz, 'u' to upload a quiz, 'e' to edit a quiz, or 'q' to quit: ";
-
     char menuInput = 'z';
-    input >> menuInput;
-    while (menuInput != 'q')
+    do
     {
+        
+        std::cout << "The Mind Meld" << std::endl;
+        std::cout << "Press 't' to take a quiz, 'u' to upload a quiz, 'e' to edit a quiz, or 'q' to quit: ";
+
+        std::cin >> menuInput;
+
         if (menuInput == 't')
         {
 
@@ -26,14 +26,13 @@ int main()
         }
         else if (menuInput == 'q')
         {
-
+            //Do nothing and keep menu input set to q
         }
         else
         {
             menuInput = 'g'; //An input that will keep the loop going.
         }
+    } while (menuInput != 'q');
 
-        output << "The Mind Meld" << std::endl;
-        output << "Press 't' to take a quiz, 'u' to upload a quiz, 'e' to edit a quiz, or 'q' to quit: ";
-    }
+    return 0;
 }
