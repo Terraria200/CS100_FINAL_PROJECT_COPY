@@ -1,8 +1,15 @@
 #include "../header/Quiz.h"
 #include <cassert>
 
-// Constructor
+// Default constructor
 Quiz::Quiz() {
+    this->title = "Untitled Quiz";
+    score = 0;
+}
+
+// Constructor
+Quiz::Quiz(std::string title) {
+    this->title = title;
     score = 0;
 }
 
@@ -85,4 +92,9 @@ int Quiz::getNumQuestions() {
 // Get the questions
 std::vector<Question*> Quiz::getQuestions() {
     return questions;
+}
+
+// Get the title
+std::string Quiz::getTitle() {
+    return title;
 }

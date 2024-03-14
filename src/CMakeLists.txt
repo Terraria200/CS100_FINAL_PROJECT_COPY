@@ -6,6 +6,7 @@ add_library(simpleLibrary
   Quiz.cpp
   QuizConstructor.cpp
   True-or-False.cpp
+  QuizManager.cpp
 )
 
 add_executable(application

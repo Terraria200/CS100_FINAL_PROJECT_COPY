@@ -8,10 +8,12 @@
 class Quiz {
 private:
     std::vector<Question*> questions;
+    std::string title;
     unsigned score;
 public:
     Quiz();
     std::vector<Question*> getQuestions();
+    Quiz(std::string title);
     void addQuestion(Question* question);
     void removeQuestion(unsigned index);
     int getNumQuestions();
@@ -20,6 +22,7 @@ public:
     void editQuestion(unsigned index, Question* question);
     void start(std::ostream& os, std::istream& is);
     unsigned getScore();
+    std::string getTitle();
     void reset();
     void clear();
     ~Quiz();
