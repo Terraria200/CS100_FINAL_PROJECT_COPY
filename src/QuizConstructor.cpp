@@ -13,18 +13,18 @@ void QuizConstructor::setAnswer(){
     getline(cin, correctAnswer, '\n');
 }
 
-void QuizConstructor::editQuestion(){
-    int questionToEdit;
-    char menuChoice = 'g';
-    char answerToEdit;
+void QuizConstructor::editQuestion(){ 
+    int questionToEdit; // Parameter 1
+    char menuChoice = 'g'; // Parameter 3
+    char answerToEdit; // Parameter 2 
     while(menuChoice != 'q'){
         cout << "Select a question to edit from 1- " << quiz->getNumQuestions() << ": ";
-        cin >> questionToEdit;
+        cin >> questionToEdit; 
         cout << endl;
         while(menuChoice != 'm'){
             if(questionToEdit >= 1 && questionToEdit <= quiz->getNumQuestions()){
                 cout << "Select 'q' to edit the question, 'a' to edit the answers, 'm' to quit: ";
-                cin >> menuChoice;
+                cin >> menuChoice;  // Parameter 3
                 cout << endl;
                 if(menuChoice == 'q'){
                     cout << "Old question is \"";
@@ -70,6 +70,11 @@ void QuizConstructor::editQuestion(){
             }
         }
     }
+}
+
+void QuizConstructor::editQuiz(Quiz *quizToChange){ // do the minute details (addQuestion, removeQuestion) for editQuestion. Creating the quiz essentially
+    this->addQuestion("What is 1 + 1? \n");
+    this->removeQuestion();
 }
 
 Question* QuizConstructor::createTrueFalseQuestion(ostream &os, istream &is){

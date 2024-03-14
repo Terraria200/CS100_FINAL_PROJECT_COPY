@@ -16,6 +16,8 @@ class QuizConstructor{
         void setAnswer();
         void editQuestion();
 
+        void editQuiz(Quiz *);
+
         Question* createTrueFalseQuestion(ostream &os, istream &is);
         Question* createMultipleChoiceQuestion(ostream &os, istream &is);
         Question* createFillInTheBlankQuestion(ostream &os, istream &is);
