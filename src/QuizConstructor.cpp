@@ -119,6 +119,51 @@ void QuizConstructor::quizToJSON(Quiz* quiz, string filename) {
 
 }
 
+Quiz * QuizConstructor::createQuiz(ostream &os, istream &is, string title){
+    // Create new quiz object
+    Quiz *quiz = new Quiz(title);
+
+    // Prompt the user for number of questions
+    os << "Enter the number of questions: ";
+    int numQuestions;
+    is >> numQuestions;
+    is.ignore();
+
+    // Loop and add new questions to quiz
+    for(int i = 0; i < numQuestions; i++){
+        // Prompt the user for question type
+        os << "Enter the question type (true-or-false, multiple-choice, fill-in-the-blank): ";
+        string type;
+        is >> type;
+        is.ignore();
+
+        // Create a new question
+        Question *q;
+
+        // Check the question type
+        if(type == "true-or-false"){
+            // Create a new true or false question
+            q = createTrueFalseQuestion(os, is);
+        } 
+        // else if(type == "multiple-choice"){
+        //     // Create a new multiple choice question
+        //     q = createMultipleChoiceQuestion(os, is);
+        // } 
+        // else if(type == "fill-in-the-blank"){
+        //     // Create a new fill in the blank question
+        //     q = createFillInTheBlankQuestion(os, is);
+        // }
+        else{
+            throw runtime_error("Invalid question type");
+        }
+
+        // Add the question to quiz
+        quiz->addQuestion(q);
+    }
+
+    return quiz;
+}
+
 void QuizConstructor::setAnswer(){
     string correctAnswer;
     getline(cin, correctAnswer, '\n');
@@ -189,9 +234,9 @@ Question* QuizConstructor::createTrueFalseQuestion(ostream &os, istream &is){
     int score;
 
     os << "Enter the question: ";
-    getline(is, question);
+    getline(is, question, '\n');
     os << "Enter the answer: ";
-    getline(is, answer);
+    getline(is, answer, '\n');
 
     // Turn answer into a boolean
     if(answer == "true"){
@@ -201,9 +246,11 @@ Question* QuizConstructor::createTrueFalseQuestion(ostream &os, istream &is){
         answer = "0";
     }
     else{
-        os << "Invalid answer. Please enter either 'true' or 'false'." << endl;
-        return nullptr;
+        throw runtime_error("Invalid answer");
     }
+
+    os << "Enter the score: ";
+    is >> score;
 
     return new TrueOrFalse(question, score, stoi(answer));
 }
