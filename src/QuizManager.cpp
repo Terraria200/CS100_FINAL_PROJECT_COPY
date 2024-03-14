@@ -48,6 +48,7 @@ void QuizManager::removeQuiz(string quizName) {
 }
 
 void QuizManager::editQuiz(string quizName) {
+
     for (int i = 0; i < quizzes.size(); i++) {
         if (quizzes[i].getTitle() == quizName) {
             QuizConstructor quizConstructor;
@@ -56,4 +57,7 @@ void QuizManager::editQuiz(string quizName) {
             return;
         }
     }
+
+    //Quiz not found
+    cout << "That quiz does not exist." << endl;
 }

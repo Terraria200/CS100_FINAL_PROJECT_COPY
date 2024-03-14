@@ -10,21 +10,30 @@ int main()
     do
     {
         std::cout << "The Mind Meld" << std::endl;
-        std::cout << "Press 't' to take a quiz, 'u' to upload a quiz, 'e' to edit a quiz, or 'q' to quit: ";
+        std::cout << "Press 't' to take a quiz, 'u' to upload a quiz from a JSON file, 'v' to view quizzes, 'e' to edit a quiz, or 'q' to quit: ";
 
         std::cin >> menuInput;
 
         if (menuInput == 't')
         {
-
+            quiz_list.run(std::cout, std::cin);
         }
         else if (menuInput == 'u')
         {
-
+            
+        }
+        else if (menuInput == 'v')
+        {
+            quiz_list.displayQuizzes(cout, cin);
         }
         else if (menuInput == 'e')
         {
+            string quiz_name;
+            cout << "Which quiz would you like to edit?" << endl;
 
+            cin >> quiz_name;
+
+            quiz_list.editQuiz(quiz_name);
         }
         else if (menuInput == 'q')
         {
