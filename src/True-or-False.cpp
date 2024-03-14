@@ -21,3 +21,11 @@ bool TrueOrFalse::checkAnswer(std::string answer) {
 std::string TrueOrFalse::getAnswer() {
     return this->answer ? "True" : "False";
 }
+
+bool TrueOrFalse::getBoolAnswer() {
+    return this->answer;
+}
+
+std::string TrueOrFalse::getType() {
+    return "true-or-false";
+}

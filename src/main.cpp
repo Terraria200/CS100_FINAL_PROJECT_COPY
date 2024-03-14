@@ -5,6 +5,5 @@
 
 int main() {
     QuizManager quizManager;
-    quizManager.run(std::cout, std::cin);
     return 0;
 }

@@ -12,7 +12,8 @@ class QuizConstructor{
         Quiz *quiz;
     public:
         QuizConstructor();
-        Quiz *JsonToQuiz(string filename);
+        Quiz *JSONToQuiz(string filename);
+        void quizToJSON(Quiz *quiz, string filename);
         void setAnswer();
         void editQuestion();
 
