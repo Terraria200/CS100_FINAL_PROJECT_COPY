@@ -104,6 +104,11 @@ int Quiz::getNumQuestions() {
     return questions.size();
 }
 
+// Get the questions
+std::vector<Question*> Quiz::getQuestions() {
+    return questions;
+}
+
 // Get the title
 std::string Quiz::getTitle() {
     return title;

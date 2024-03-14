@@ -6,6 +6,7 @@ add_subdirectory(googletest)
 add_executable(runAllTests
     QuizTest.cpp
     TrueFalseTest.cpp
+    QuizConstructorTest.cpp
     QuizManagerTest.cpp
 )
 

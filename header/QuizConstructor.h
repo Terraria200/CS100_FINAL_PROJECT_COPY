@@ -12,7 +12,9 @@ class QuizConstructor{
         Quiz *quiz;
     public:
         QuizConstructor();
-        Quiz *JsonToQuiz(string filename);
+        Quiz *JSONToQuiz(string filename);
+        void quizToJSON(Quiz *quiz, string filename);
+        Quiz *createQuiz(ostream &os, istream &is, string title);
         void setAnswer();
         void editQuestion();
 
