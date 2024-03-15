@@ -81,7 +81,7 @@ void Quiz::start(std::ostream& os, std::istream& is) {
     time << ":";
     time << std::setfill('0') << std::setw(2) << static_cast<int>(quiz_time.count() / 60);
     time << ":";
-    time << static_cast<int>(quiz_time.count()) % 60;
+    time << std::setfill('0') << std::setw(2) << static_cast<int>(quiz_time.count()) % 60;
 
     os << "TIME TAKEN: " << time.str() << std::endl;
 

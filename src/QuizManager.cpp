@@ -6,7 +6,7 @@ void QuizManager::run(ostream& os, istream& is) {
 
     // If there are available quizzes, prompt user for choice of quiz
     if (quizzes.size() > 0) {
-        os << "Enter the number of the quiz you would like to take: ";
+        os << "\nEnter the number of the quiz you would like to take: ";
         int choice;
         is >> choice;
         is.ignore();
@@ -24,11 +24,11 @@ void QuizManager::run(ostream& os, istream& is) {
 
 void QuizManager::displayQuizzes(ostream& os, istream& is) {
     if (quizzes.size() == 0) {
-        os << "No quizzes available." << endl;
+        os << "\nNo quizzes available." << endl;
         return;
     }
 
-    os << "Quizzes available: " << endl;
+    os << "\nQuizzes available: " << endl;
     for (int i = 0; i < quizzes.size(); i++) {
         os << i + 1 << ". " << quizzes[i]->getTitle() << endl;
     }
@@ -41,7 +41,7 @@ void QuizManager::addQuiz(string quizName) {
 void QuizManager::removeQuiz(string quizName) {
     if (quizzes.size() == 0)
     {
-        std::cout << "There are no quizzes to remove." << std::endl;
+        std::cout << "\nThere are no quizzes to remove." << std::endl;
         return;
     }
     
@@ -57,11 +57,11 @@ void QuizManager::editQuiz() {
 
     if (quizzes.size() == 0)
     {
-        std::cout << "There are no quizzes to edit." << std::endl;
+        std::cout << "\nThere are no quizzes to edit." << std::endl;
         return;
     }
             
-    std::cout << "Which quiz would you like to edit?" << endl;
+    std::cout << "\nWhich quiz would you like to edit?" << endl;
 
     string quizName;
     std::cin >> quizName;
@@ -76,7 +76,7 @@ void QuizManager::editQuiz() {
     }
 
     //Quiz not found
-    cout << "That quiz does not exist." << endl;
+    cout << "\nThat quiz does not exist." << endl;
 }
 
 void QuizManager::uploadQuiz(string filepath)
@@ -87,11 +87,11 @@ void QuizManager::uploadQuiz(string filepath)
     if (uploaded_quiz = uploader.JSONToQuiz(filepath))
     {
         quizzes.push_back(uploaded_quiz);
-        std::cout << "Quiz successfully uploaded." << std::endl;
+        std::cout << "\nQuiz successfully uploaded." << std::endl;
     }
     else
     {
-        std::cout << "The file was not able to be opened." << std::endl;
+        std::cout << "\nThe file was not able to be opened." << std::endl;
     }
 }
 
@@ -99,12 +99,12 @@ void QuizManager::downloadQuiz(string filepath)
 {
     if (quizzes.size() == 0)
     {
-        std::cout << "There are no quizzes to download." << std::endl;
+        std::cout << "\nThere are no quizzes to download." << std::endl;
         return;
     }
 
 
-    std::cout << "Which quiz would you like to download?" << std::endl;
+    std::cout << "\nWhich quiz would you like to download?" << std::endl;
     string quizName;
     getline(std::cin, quizName);
 
@@ -113,13 +113,13 @@ void QuizManager::downloadQuiz(string filepath)
             QuizConstructor JSONdownloader;
 
             JSONdownloader.quizToJSON(quizzes[i], filepath);
-            std::cout << "Quiz donwloaded" << std::endl;
+            std::cout << "\nQuiz donwloaded" << std::endl;
 
              return;
         }
     }
 
-    std::cout << "That quiz does not exist. Exiting to main menu." << std::endl;
+    std::cout << "\nThat quiz does not exist. Exiting to main menu." << std::endl;
 }
 
 void QuizManager::createQuizInhouse(ostream &os, istream &is)
@@ -127,7 +127,7 @@ void QuizManager::createQuizInhouse(ostream &os, istream &is)
     Quiz *new_quiz;
     QuizConstructor constructor;
 
-    os << "What would you like the quiz to be named?" << std::endl;
+    os << "\nWhat would you like the quiz to be named?" << std::endl;
     string quiz_title;
     is >> quiz_title;
 
