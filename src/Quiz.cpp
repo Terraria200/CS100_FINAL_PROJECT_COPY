@@ -1,6 +1,8 @@
 #include "../header/Quiz.h"
 #include <cassert>
 #include <chrono>
+#include <iomanip>
+#include <sstream>
 
 // Default constructor
 Quiz::Quiz() {
@@ -63,6 +65,8 @@ void Quiz::start(std::ostream& os, std::istream& is) {
     //Stats screen
     double correctPercentage = (static_cast<double>(questionsCorrect) / static_cast<double>(questionsAnswered)) * 100;
 
+    std::stringstream time;
+
     os << "\n" << "QUIZ STATISTICS:" << std::endl;
 
     os << "SCORE: " << score << std::endl;
@@ -71,7 +75,15 @@ void Quiz::start(std::ostream& os, std::istream& is) {
 
     os << "% CORRECT: " << correctPercentage << "%" << std::endl;
 
-    os << "TIME TAKEN: " << static_cast<int>(quiz_time.count() / 60) << ":" << static_cast<int>(quiz_time.count()) % 60 << std::endl;
+    //Time output in format HOURS:MINUTES:SECONDS
+
+    time << static_cast<int>(quiz_time.count() / 3600);
+    time << ":";
+    time << std::setfill('0') << std::setw(2) << static_cast<int>(quiz_time.count() / 60);
+    time << ":";
+    time << static_cast<int>(quiz_time.count()) % 60;
+
+    os << "TIME TAKEN: " << time.str() << std::endl;
 
     // Wait for the user to press enter
     std::string enterKeyPress;
