@@ -58,7 +58,9 @@ void Quiz::start(std::ostream& os, std::istream& is) {
 
     std::cout << "SCORE: " << score << std::endl;
 
-    std::cout << "PERCENTAGE ANSWERS CORRECT: " << correctPercentage << "%" << std::endl;
+    std::cout << "QUESTIONS CORRECT: " << questionsCorrect << "/" << questionsAnswered << std::endl;
+
+    std::cout << "% CORRECT: " << correctPercentage << "%" << std::endl;
 }
 
 // Clear the questions
