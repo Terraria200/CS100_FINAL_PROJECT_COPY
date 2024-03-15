@@ -22,3 +22,7 @@ bool MultiChoice::checkAnswer(std::string answer) {
 std::string MultiChoice::GetAnswer() {
     return this->answer;
 }
+
+std::string MultiChoice::getType() {
+    return "multiple choice";
+}

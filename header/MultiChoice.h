@@ -7,4 +7,5 @@ class MultiChoice : public Question {
         MultiChoice(std::string content, int score, std::string answer);
         bool checkAnswer(std::string answer);
         std::string GetAnswer();
+        std::string getType();
 };
