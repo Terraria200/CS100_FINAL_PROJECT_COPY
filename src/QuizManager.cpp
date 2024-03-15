@@ -2,7 +2,7 @@
 
 void QuizManager::run(ostream& os, istream& is) {
     // Display quizzes
-    displayQuizzes(os, is);
+    displayQuizzes(os);
 
     // If there are available quizzes, prompt user for choice of quiz
     if (quizzes.size() > 0) {
@@ -13,7 +13,7 @@ void QuizManager::run(ostream& os, istream& is) {
         choice--;
 
         // If the choice is valid, start the quiz
-        if (choice >= 0 && choice < quizzes.size()) {
+        if (choice >= 0 && choice < static_cast<int>(quizzes.size())) {
             quizzes[choice]->start(os, is);
         }
         else {
@@ -22,14 +22,14 @@ void QuizManager::run(ostream& os, istream& is) {
     }
 }
 
-void QuizManager::displayQuizzes(ostream& os, istream& is) {
+void QuizManager::displayQuizzes(ostream& os) {
     if (quizzes.size() == 0) {
         os << "\nNo quizzes available." << endl;
         return;
     }
 
     os << "\nQuizzes available: " << endl;
-    for (int i = 0; i < quizzes.size(); i++) {
+    for (int i = 0; i < static_cast<int>(quizzes.size()); i++) {
         os << i + 1 << ". " << quizzes[i]->getTitle() << endl;
     }
 }
@@ -45,12 +45,16 @@ void QuizManager::removeQuiz(string quizName) {
         return;
     }
     
-    for (int i = 0; i < quizzes.size(); i++) {
-        if (quizzes[i]->getTitle() == quizName) {
-            quizzes.erase(quizzes.begin() + i);
+    for (auto it = quizzes.begin(); it != quizzes.end(); ) {
+        if ((*it)->getTitle() == quizName) {
+            it = quizzes.erase(it);
             return;
+        } else {
+            ++it;
         }
     }
+    // Quiz not found
+    throw std::invalid_argument("Quiz not found");
 }
 
 void QuizManager::editQuiz() {
@@ -67,13 +71,13 @@ void QuizManager::editQuiz() {
     string quizName;
     std::cin >> quizName;
 
-    for (int i = 0; i < quizzes.size(); i++) {
-        if (quizzes[i]->getTitle() == quizName) {
-            QuizConstructor quizConstructor;
-            quizConstructor.editQuiz(std::cout, std::cin, quizzes[i]);
-            return;
-        }
+    for (auto* quiz : quizzes) {
+    if (quiz->getTitle() == quizName) {
+        QuizConstructor quizConstructor;
+        quizConstructor.editQuiz(std::cout, std::cin, quiz);
+        return;
     }
+}
 
     //Quiz not found
     cout << "\nThat quiz does not exist." << endl;
@@ -84,7 +88,7 @@ void QuizManager::uploadQuiz(string filepath)
     Quiz* uploaded_quiz;
     QuizConstructor uploader;
 
-    if (uploaded_quiz = uploader.JSONToQuiz(filepath))
+    if ((uploaded_quiz = uploader.JSONToQuiz(filepath)))
     {
         quizzes.push_back(uploaded_quiz);
         std::cout << "\nQuiz successfully uploaded." << std::endl;
@@ -97,7 +101,7 @@ void QuizManager::uploadQuiz(string filepath)
 
 void QuizManager::downloadQuiz(string filepath)
 {
-    if (quizzes.size() == 0)
+    if (static_cast<int>(quizzes.size()) == 0)
     {
         std::cout << "\nThere are no quizzes to download." << std::endl;
         return;
@@ -109,7 +113,7 @@ void QuizManager::downloadQuiz(string filepath)
     string quizName;
     getline(std::cin, quizName);
 
-    for (int i = 0; i < quizzes.size(); i++) {
+    for (int i = 0; i < static_cast<int>(quizzes.size()); i++) {
         if (quizzes[i]->getTitle() == quizName) {
             QuizConstructor JSONdownloader;
 
