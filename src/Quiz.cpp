@@ -35,6 +35,7 @@ unsigned Quiz::getScore() {
 void Quiz::start(std::ostream& os, std::istream& is) {
     int questionsCorrect = 0;
     int questionsAnswered = 0;
+    score = 0;
 
     //Start of timer
     auto start = std::chrono::high_resolution_clock::now();

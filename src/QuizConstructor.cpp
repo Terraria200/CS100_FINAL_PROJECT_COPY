@@ -213,10 +213,10 @@ void QuizConstructor::editQuiz(ostream& os, istream& is, Quiz *quiz){
             //     // Create a new multiple choice question
             //     q = createMultipleChoiceQuestion(os, is);
             // } 
-            // else if(type == "fill-in-the-blank"){
-            //     // Create a new fill in the blank question
-            //     q = createFillInTheBlankQuestion(os, is);
-            // }
+            else if(type == "fill-in-the-blank"){
+                // Create a new fill in the blank question
+                q = createFillInTheBlankQuestion(os, is);
+            }
             else{
                 throw runtime_error("Invalid question type");
             }
@@ -267,10 +267,10 @@ void QuizConstructor::editQuiz(ostream& os, istream& is, Quiz *quiz){
             //     // Create a new multiple choice question
             //     q = createMultipleChoiceQuestion(os, is);
             // } 
-            // else if(type == "fill-in-the-blank"){
-            //     // Create a new fill in the blank question
-            //     q = createFillInTheBlankQuestion(os, is);
-            // }
+            else if(type == "fill-in-the-blank"){
+                // Create a new fill in the blank question
+                q = createFillInTheBlankQuestion(os, is);
+            }
             else{
                 throw runtime_error("Invalid question type");
             }
@@ -295,6 +295,9 @@ Question* QuizConstructor::createTrueFalseQuestion(ostream &os, istream &is){
     getline(is, question, '\n');
     os << "Enter the answer: ";
     getline(is, answer, '\n');
+
+    //Convert to lowercase
+    std::transform(answer.begin(), answer.end(), answer.begin(), ::tolower);
 
     // Turn answer into a boolean
     if(answer == "true"){

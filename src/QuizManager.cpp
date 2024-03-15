@@ -62,6 +62,7 @@ void QuizManager::editQuiz() {
     }
             
     std::cout << "\nWhich quiz would you like to edit?" << endl;
+    displayQuizzes(std::cout, std::cin);
 
     string quizName;
     std::cin >> quizName;
@@ -104,6 +105,7 @@ void QuizManager::downloadQuiz(string filepath)
 
 
     std::cout << "\nWhich quiz would you like to download?" << std::endl;
+    displayQuizzes(std::cout, std::cin);
     string quizName;
     getline(std::cin, quizName);
 
