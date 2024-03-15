@@ -35,7 +35,11 @@ TEST(QuizTest, start) {
     std::stringstream is;
 
     quiz.start(os, is);
-    EXPECT_EQ("What is 1 + 1?\n", os.str());
+
+    std::string expected = "What is 1 + 1?";
+    std::string actual;
+    std::getline(os, actual, '\n');
+    EXPECT_EQ(expected, actual);
 
     is << "correct";
     EXPECT_EQ(1, quiz.getScore());
@@ -51,8 +55,18 @@ TEST(QuizTest, multipleQuestions) {
     std::stringstream os;
     std::stringstream is;
 
+
     quiz.start(os, is);
-    EXPECT_EQ("What is 1 + 1?\nWhat is 2 + 2?\n", os.str());
+    
+    std::string expected = "What is 1 + 1?";
+    std::string actual;
+    std::getline(os, actual, '\n');
+    EXPECT_EQ(expected, actual);
+
+    expected = "What is 2 + 2?";
+    std::getline(os, actual, '\n');
+    EXPECT_EQ(expected, actual);
+
     is << "correct";
     is << "correct";
 

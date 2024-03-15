@@ -54,13 +54,17 @@ void Quiz::start(std::ostream& os, std::istream& is) {
     //Stats screen
     double correctPercentage = (questionsCorrect / questionsAnswered) * 100;
 
-    std::cout << "\n" << "QUIZ STATISTICS:" << std::endl;
+    os << "\n" << "QUIZ STATISTICS:" << std::endl;
 
-    std::cout << "SCORE: " << score << std::endl;
+    os << "SCORE: " << score << std::endl;
 
-    std::cout << "QUESTIONS CORRECT: " << questionsCorrect << "/" << questionsAnswered << std::endl;
+    os << "QUESTIONS CORRECT: " << questionsCorrect << "/" << questionsAnswered << std::endl;
 
-    std::cout << "% CORRECT: " << correctPercentage << "%" << std::endl;
+    os << "% CORRECT: " << correctPercentage << "%" << std::endl;
+
+    // Wait for the user to press enter
+    std::string enterKeyPress;
+    std::getline(is, enterKeyPress);
 }
 
 // Clear the questions
