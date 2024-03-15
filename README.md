@@ -29,17 +29,30 @@ SOLID Principle Changes explanation:
 * Single responsibility - The Quiz constructor was originally responsible for uploading and downloading both JSON and TXT files, we separated the two file types into separate classes that inherit from a QuizConstructor interface.  This helped us by categorizing the behaviors for each type of QuizConstructor,and will also allow us to create more types in the future.
 * Interface segregation - Originally, the Question class was originally forcing each subclass to have a string implementation for their answer, this did not make sense so we removed the implementation from the interface and put them into the individual subclasses.  This allows each subclass to implement its own type of answer that works better with the behavior that is specific to that subclass.
 * Dependency inversion - Originally, the Quiz class methods would output to the std cout and take inputs from the std cin.  Rather than doing this now, we have changed the method to take references to input and output streams as parameters, which allows us to not depend on which specific stream we are outputting the quiz display to.  This has helped us while devoloping because it allowed us to more easily write tests for this function, and it gives the function more flexibility with what it is capable of.
-
- 
- > ## Final deliverable
- > All group members will give a demo to the reader during lab time. ou should schedule your demo on Calendly with the same reader who took your second scrum meeting. The reader will check the demo and the project GitHub repository and ask a few questions to all the team members. 
- > Before the demo, you should do the following:
- > * Complete the sections below (i.e. Screenshots, Installation/Usage, Testing)
- > * Plan one more sprint (that you will not necessarily complete before the end of the quarter). Your In-progress and In-testing columns should be empty (you are not doing more work currently) but your TODO column should have a full sprint plan in it as you have done before. This should include any known bugs (there should be some) or new features you would like to add. These should appear as issues/cards on your Project board.
- > * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history. 
  
  ## Screenshots
- > Screenshots of the input/output after running your application
+ Creating a Quiz:
+ 
+ ![image](https://github.com/cs100/final-project-gwils018-haham003-kwils076-nster005/assets/68349014/6bbec974-a0e0-4020-ad69-51c739ce1b50)
+
+ Taking a Quiz:
+ 
+ ![image](https://github.com/cs100/final-project-gwils018-haham003-kwils076-nster005/assets/68349014/9e483e3e-b981-4110-926e-c5f0a0cfc053)
+
+ Downloading a Quiz:
+ 
+ ![image](https://github.com/cs100/final-project-gwils018-haham003-kwils076-nster005/assets/68349014/7f8c2f1b-92ce-45c6-8e8d-1ac802139321)
+ ![image](https://github.com/cs100/final-project-gwils018-haham003-kwils076-nster005/assets/68349014/06f1fd24-1f73-49da-bf07-eb9f6e3e127f)
+
+ Uploading a Quiz:
+ 
+ ![image](https://github.com/cs100/final-project-gwils018-haham003-kwils076-nster005/assets/68349014/3056655e-d43a-42d8-af68-928289eae0aa)
+ ![image](https://github.com/cs100/final-project-gwils018-haham003-kwils076-nster005/assets/68349014/289a9117-a8db-4ef8-b9e9-bd4fc8e97b5a)
+
+ 
+
+
+
  ## Installation/Usage
  > Instructions on installing and running your application
 
