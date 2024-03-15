@@ -71,7 +71,7 @@ int main()
         }
         else if (menuInput[0] == 'v')
         {
-            quiz_list.displayQuizzes(cout, cin);
+            quiz_list.displayQuizzes(cout);
             
             std::cout << "\nPress ENTER to return to the main menu." << std::endl;
             std::cin.clear();

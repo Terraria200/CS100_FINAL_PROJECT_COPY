@@ -10,7 +10,7 @@ class QuizManager {
         vector<Quiz*> quizzes;
     public:
         void run(ostream& os, istream& is);
-        void displayQuizzes(ostream& os, istream& is);
+        void displayQuizzes(ostream& os);
         void addQuiz(string quizName);
         void removeQuiz(string quizName);
         void editQuiz();
