@@ -4,19 +4,23 @@
 
 #include<cstdlib>
 #include "Quiz.h"
-#include "True-or-False.h"
+//#include "True-or-False.h"
+#include "../header/Question.h"
 using namespace std;
+
+
 
 class QuizConstructor{
     private: // Pretty sure that generally, variables are private while functions are public
         Quiz *quiz;
     public:
         QuizConstructor();
+        QuizConstructor(Quiz *quiz);
         Quiz *JsonToQuiz(string filename);
         void setAnswer();
-        void editQuestion();
+        void editQuestion(ostream& os, istream& is, char menuChoice, int questionToEdit, char answerToEdit, Quiz& quiz);
 
-        void editQuiz(Quiz *);
+        void editQuiz(char menuChoice, int questionToEdit, char answerToEdit, QuizConstructor quizConstructor);
 
         Question* createTrueFalseQuestion(ostream &os, istream &is);
         Question* createMultipleChoiceQuestion(ostream &os, istream &is);

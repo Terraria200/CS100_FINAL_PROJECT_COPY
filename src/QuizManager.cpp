@@ -47,17 +47,18 @@ void QuizManager::removeQuiz(string quizName) {
     }
 }
 
-void QuizManager::editQuiz(string quizName, int questionToEdit, char menuChoice, char answerToEdit) {
+void QuizManager::editQuiz(string quizName, char menuChoice, int questionToEdit, char answerToEdit) {
     for (int i = 0; i < quizzes.size(); i++) {
         if (quizzes[i].getTitle() == quizName) {
-            QuizConstructor quizConstructor;
+            QuizConstructor quizConstructor(quizzes[i]);
             // TODO: Implement editQuiz in QuizConstructor
-            // quizzes[i] = quizConstructor.editQuiz(cout, cin);
+            // quizzes[i] = quizConstructor.editQuiz(cout, cin, Quiz);
 
-             //int questionToEdit; // Parameter 1
-            //char menuChoice = 'g'; // Parameter 3
-             //char answerToEdit; // Parameter 2
-             quizzes[i] = quizConstructor.editQuiz(quizName);
+            //char menuChoice = 'g'; // Parameter 1
+             //int questionToEdit; // Parameter 2
+             //char answerToEdit; // Parameter 3
+
+            quizzes[i] = quizConstructor.editQuiz(menuChoice, questionToEdit, answerToEdit, quizConstructor);
 
             // My shit = make editQuiz function inside of QuizConstructor (make a call to editQuiz()), read input
             return;

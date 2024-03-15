@@ -67,7 +67,7 @@ void Quiz::displayQuestions(std::ostream& os) {
 }
 
 // Edit a question
-void Quiz::editQuestion(unsigned i, Question* question) {
+void Quiz::editQuestion(unsigned i, Question question) {
     // editQuestion should never be called with an index out of range
     assert(i < questions.size() && "Index out of range");
 
