@@ -20,7 +20,7 @@ class QuizConstructor{
         Quiz *createQuiz(ostream &os, istream &is, string title);
         void setAnswer();
 
-        void editQuiz(unsigned questionToEdit, string newContent, string newAnswer, Quiz *quiz);
+        void editQuiz(ostream& os, istream& is, Quiz *quiz);
 
         Question* createTrueFalseQuestion(ostream &os, istream &is);
         Question* createMultipleChoiceQuestion(ostream &os, istream &is);

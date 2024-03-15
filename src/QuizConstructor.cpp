@@ -169,23 +169,123 @@ void QuizConstructor::setAnswer(){
     getline(cin, correctAnswer, '\n');
 }
 
-void QuizConstructor::editQuiz(unsigned questionToEdit, string newContent, string newAnswer, Quiz *quiz){ // do the minute details (addQuestion, removeQuestion) for editQuestion. Creating the quiz essentially
-
-    stringstream os;
-    stringstream is;
-
-    os << "Enter question # to edit or remove: ";
-    //is >> questionToEdit;
-
-    os << "Enter new question: ";
-    // getline(is, newContent);
-
-    os << "Enter new answer: ";
-    //getline();
-
-    TrueOrFalse question1(newContent, 1, newAnswer);
+void QuizConstructor::editQuiz(ostream& os, istream& is, Quiz *quiz){ 
+    // Prompt user to see if they want to change title, then change it if they do
+    os << "Would you like to change the title? (y/n): ";
+    string changeTitle;
+    is >> changeTitle;
+    is.ignore();
+    if(changeTitle == "y"){
+        os << "Enter the new title: ";
+        string newTitle;
+        getline(is, newTitle, '\n');
+        quiz->setTitle(newTitle);
+        os << "Title changed to " << newTitle << endl;
+    }
     
-    quiz->editQuestion(questionToEdit, question1);
+    // Loop for editing questions menu
+    bool editing = true;
+    while(editing){
+        // Display the questions
+        quiz->displayQuestions(os);
+
+        // Prompt user for adding, removing, or editing a question
+        os << "Would you like to add, remove, or edit a question? (add/remove/edit/exit): ";
+        string choice;
+        is >> choice;
+        is.ignore();
+
+        // Add a question
+        if(choice == "add"){
+            // Prompt the user for question type
+            os << "Enter the question type (true-or-false, multiple-choice, fill-in-the-blank): ";
+            string type;
+            is >> type;
+            is.ignore();
+
+            // Create a new question
+            Question *q;
+
+            // Check the question type
+            if(type == "true-or-false"){
+                // Create a new true or false question
+                q = createTrueFalseQuestion(os, is);
+            } 
+            // else if(type == "multiple-choice"){
+            //     // Create a new multiple choice question
+            //     q = createMultipleChoiceQuestion(os, is);
+            // } 
+            // else if(type == "fill-in-the-blank"){
+            //     // Create a new fill in the blank question
+            //     q = createFillInTheBlankQuestion(os, is);
+            // }
+            else{
+                throw runtime_error("Invalid question type");
+            }
+
+            // Add the question to quiz
+            quiz->addQuestion(q);
+        }
+
+        // Remove a question
+        else if(choice == "remove"){
+            // Prompt the user for the question number
+            os << "Enter the number of the question you would like to remove: ";
+            int questionNumber;;
+            is >> questionNumber;
+            is.ignore();
+
+            int index = questionNumber - 1;
+
+            // Remove the question
+            quiz->removeQuestion(index);
+        }
+
+        // Edit a question
+        else if(choice == "edit"){
+            // Prompt the user for the question number
+            os << "Enter the number of the question you would like to edit: ";
+            int questionNumber;
+            is >> questionNumber;
+            is.ignore();
+
+            int index = questionNumber - 1;
+
+            // Prompt the user for question type
+            os << "Enter the question type (true-or-false, multiple-choice, fill-in-the-blank): ";
+            string type;
+            is >> type;
+            is.ignore();
+
+            // Create a new question
+            Question *q;
+
+            // Check the question type
+            if(type == "true-or-false"){
+                // Create a new true or false question
+                q = createTrueFalseQuestion(os, is);
+            } 
+            // else if(type == "multiple-choice"){
+            //     // Create a new multiple choice question
+            //     q = createMultipleChoiceQuestion(os, is);
+            // } 
+            // else if(type == "fill-in-the-blank"){
+            //     // Create a new fill in the blank question
+            //     q = createFillInTheBlankQuestion(os, is);
+            // }
+            else{
+                throw runtime_error("Invalid question type");
+            }
+
+            // Edit the question
+            quiz->editQuestion(index, q);
+        }
+
+        // Exit
+        else {
+            editing = false;
+        }
+    }
 }
 
 Question* QuizConstructor::createTrueFalseQuestion(ostream &os, istream &is){

@@ -23,6 +23,7 @@ public:
     void start(std::ostream& os, std::istream& is);
     unsigned getScore();
     std::string getTitle();
+    void setTitle(std::string title);
     void reset();
     void clear();
     ~Quiz();
