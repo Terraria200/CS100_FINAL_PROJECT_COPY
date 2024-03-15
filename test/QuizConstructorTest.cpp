@@ -81,4 +81,6 @@ TEST(QuizConstructorTest, createTrueFalseQuestion) {
     EXPECT_EQ(10, question->getScore());
     EXPECT_EQ("true-or-false", question->getType());
     EXPECT_EQ(true, question->checkAnswer("true"));
+
+    delete question;
 }
