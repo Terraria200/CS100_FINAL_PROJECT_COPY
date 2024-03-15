@@ -1,1 +1,1 @@
-{"questions":[{"answer":true,"points":10,"question":"The sky is blue.","type":"true-or-false"}],"title":"Untitled Quiz"}
+{"questions":[{"answer":1,"options":["one","two","three"],"points":3,"question":"no","type":"multiple-choice"}],"title":"Yes"}

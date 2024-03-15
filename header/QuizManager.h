@@ -9,6 +9,7 @@ class QuizManager {
     private:
         vector<Quiz*> quizzes;
     public:
+        ~QuizManager();
         void run(ostream& os, istream& is);
         void displayQuizzes(ostream& os);
         void addQuiz(string quizName);

@@ -1,5 +1,11 @@
 #include "../header/QuizManager.h"
 
+QuizManager::~QuizManager() {
+    for (auto quiz : quizzes) {
+        delete quiz;
+    }
+}
+
 void QuizManager::run(ostream& os, istream& is) {
     // Display quizzes
     displayQuizzes(os);
@@ -106,6 +112,7 @@ void QuizManager::downloadQuiz(string filepath)
         return;
     }
 
+    displayQuizzes(std::cout);
 
     std::cout << "\nWhich quiz would you like to download?" << std::endl;
     string quizName;
@@ -116,7 +123,7 @@ void QuizManager::downloadQuiz(string filepath)
             QuizConstructor JSONdownloader;
 
             JSONdownloader.quizToJSON(quizzes[i], filepath);
-            std::cout << "\nQuiz donwloaded" << std::endl;
+            std::cout << "\nQuiz downloaded" << std::endl;
 
              return;
         }
