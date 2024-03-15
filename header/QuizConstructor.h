@@ -4,7 +4,7 @@
 
 #include<cstdlib>
 #include "Quiz.h"
-//#include "True-or-False.h"
+#include "../header/True-or-False.h"
 #include "../header/Question.h"
 using namespace std;
 
@@ -15,12 +15,12 @@ class QuizConstructor{
         Quiz *quiz;
     public:
         QuizConstructor();
-        QuizConstructor(Quiz *quiz);
-        Quiz *JsonToQuiz(string filename);
+        Quiz *JSONToQuiz(string filename);
+        void quizToJSON(Quiz *quiz, string filename);
+        Quiz *createQuiz(ostream &os, istream &is, string title);
         void setAnswer();
-        void editQuestion(ostream& os, istream& is, char menuChoice, int questionToEdit, char answerToEdit, Quiz& quiz);
 
-        void editQuiz(char menuChoice, int questionToEdit, char answerToEdit, QuizConstructor quizConstructor);
+        void editQuiz(unsigned questionToEdit, string newContent, string newAnswer, Quiz *quiz);
 
         Question* createTrueFalseQuestion(ostream &os, istream &is);
         Question* createMultipleChoiceQuestion(ostream &os, istream &is);

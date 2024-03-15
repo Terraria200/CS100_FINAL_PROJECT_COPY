@@ -12,6 +12,7 @@ private:
     unsigned score;
 public:
     Quiz();
+    std::vector<Question*> getQuestions();
     Quiz(std::string title);
     void addQuestion(Question* question);
     void removeQuestion(unsigned index);
