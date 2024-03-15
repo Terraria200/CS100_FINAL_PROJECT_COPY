@@ -142,3 +142,8 @@ std::vector<Question*> Quiz::getQuestions() {
 std::string Quiz::getTitle() {
     return title;
 }
+
+// Set the title
+void Quiz::setTitle(std::string title) {
+    this->title = title;
+}

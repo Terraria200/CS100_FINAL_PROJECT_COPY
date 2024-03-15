@@ -69,8 +69,7 @@ void QuizManager::editQuiz() {
     for (int i = 0; i < quizzes.size(); i++) {
         if (quizzes[i]->getTitle() == quizName) {
             QuizConstructor quizConstructor;
-            // TODO: Implement editQuiz in QuizConstructor
-            // quizzes[i] = quizConstructor.editQuiz(cout, cin);
+            quizConstructor.editQuiz(std::cout, std::cin, quizzes[i]);
             return;
         }
     }

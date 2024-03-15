@@ -1,3 +1,6 @@
+#ifndef TRUEORFALSE_H
+#define TRUEORFALSE_H
+
 #include "../header/Question.h"
 
 class TrueOrFalse : public Question {
@@ -10,3 +13,5 @@ public:
     bool getBoolAnswer();
     std::string getType();
 };
+
+#endif
