@@ -30,6 +30,9 @@ unsigned Quiz::getScore() {
 
 // Start the quiz
 void Quiz::start(std::ostream& os, std::istream& is) {
+    int questionsCorrect = 0;
+    int questionsAnswered = 0;
+
     // For each question, ask the question and check the answer
     for (auto question : questions) {
         os << question->getQuestion() << std::endl;
@@ -39,11 +42,29 @@ void Quiz::start(std::ostream& os, std::istream& is) {
         
         if (question->checkAnswer(answer)) {
             score += question->getScore();
+            questionsCorrect++;
         }
+
+        questionsAnswered++;
 
         // Clear the input buffer
         is.clear();
     }
+
+    //Stats screen
+    double correctPercentage = (questionsCorrect / questionsAnswered) * 100;
+
+    os << "\n" << "QUIZ STATISTICS:" << std::endl;
+
+    os << "SCORE: " << score << std::endl;
+
+    os << "QUESTIONS CORRECT: " << questionsCorrect << "/" << questionsAnswered << std::endl;
+
+    os << "% CORRECT: " << correctPercentage << "%" << std::endl;
+
+    // Wait for the user to press enter
+    std::string enterKeyPress;
+    std::getline(is, enterKeyPress);
 }
 
 // Clear the questions
