@@ -1,28 +1,35 @@
 #include "../header/MultiChoice.h"
 #include <algorithm>
 
-MultiChoice::MultiChoice(std::string content, int score, std::string answer) : Question(content, answer, score) {
-    this->answer = answer;
-}
-
 bool MultiChoice::checkAnswer(std::string answer) {
-    std::transform(answer.begin(), answer.end(), answer.begin(), ::tolower);
-
-    if (answer == getAnswer()) {
-        return "true";
-    }
-    else if (answer != getAnswer()) {
-        return "false";
-    }
-    else {
-        return "false";
-    }
+    return std::stoi(answer) == this->answer + 1;
 }
 
-std::string MultiChoice::GetAnswer() {
-    return this->answer;
+std::string MultiChoice::getAnswer() {
+    return options[answer];
+}
+
+int MultiChoice::getIntAnswer() {
+    return answer;
 }
 
 std::string MultiChoice::getType() {
-    return "multiple choice";
+    return "multiple-choice";
+}
+
+std::vector<std::string> MultiChoice::getOptions() {
+    return options;
+}
+
+std::string MultiChoice::getQuestion() {
+    std::string returnString = Question::getQuestion();
+    returnString += "\n";
+    for (int i = 0; i < options.size(); i++) {
+        returnString += std::to_string(i + 1) + ". " + options[i] + "\n";
+    }
+    return returnString;
+}
+
+std::string MultiChoice::getQuestionWithoutOptions() {
+    return Question::getQuestion();
 }

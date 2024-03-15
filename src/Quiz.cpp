@@ -1,5 +1,8 @@
 #include "../header/Quiz.h"
 #include <cassert>
+#include <chrono>
+#include <iomanip>
+#include <sstream>
 
 // Default constructor
 Quiz::Quiz() {
@@ -33,6 +36,9 @@ void Quiz::start(std::ostream& os, std::istream& is) {
     int questionsCorrect = 0;
     int questionsAnswered = 0;
 
+    //Start of timer
+    auto start = std::chrono::high_resolution_clock::now();
+
     // For each question, ask the question and check the answer
     for (auto question : questions) {
         os << question->getQuestion() << std::endl;
@@ -51,8 +57,15 @@ void Quiz::start(std::ostream& os, std::istream& is) {
         is.clear();
     }
 
+    //End of timer
+    auto finish = std::chrono::high_resolution_clock::now();
+
+    std::chrono::duration<double> quiz_time = finish - start;
+
     //Stats screen
-    double correctPercentage = (questionsCorrect / questionsAnswered) * 100;
+    double correctPercentage = (static_cast<double>(questionsCorrect) / static_cast<double>(questionsAnswered)) * 100;
+
+    std::stringstream time;
 
     os << "\n" << "QUIZ STATISTICS:" << std::endl;
 
@@ -61,6 +74,16 @@ void Quiz::start(std::ostream& os, std::istream& is) {
     os << "QUESTIONS CORRECT: " << questionsCorrect << "/" << questionsAnswered << std::endl;
 
     os << "% CORRECT: " << correctPercentage << "%" << std::endl;
+
+    //Time output in format HOURS:MINUTES:SECONDS
+
+    time << static_cast<int>(quiz_time.count() / 3600);
+    time << ":";
+    time << std::setfill('0') << std::setw(2) << static_cast<int>(quiz_time.count() / 60);
+    time << ":";
+    time << std::setfill('0') << std::setw(2) << static_cast<int>(quiz_time.count()) % 60;
+
+    os << "TIME TAKEN: " << time.str() << std::endl;
 
     // Wait for the user to press enter
     std::string enterKeyPress;
@@ -118,4 +141,9 @@ std::vector<Question*> Quiz::getQuestions() {
 // Get the title
 std::string Quiz::getTitle() {
     return title;
+}
+
+// Set the title
+void Quiz::setTitle(std::string title) {
+    this->title = title;
 }

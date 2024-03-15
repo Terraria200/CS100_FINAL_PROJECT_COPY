@@ -1,16 +1,6 @@
 #include "gtest/gtest.h"
 #include "../header/QuizConstructor.h"
 
-// Test JSONToQuiz
-TEST(QuizConstructorTest, JSONToQuiz) {
-    QuizConstructor quizConstructor;
-    Quiz *quiz = quizConstructor.JSONToQuiz("./data/quiz.json");
-    EXPECT_EQ(1, quiz->getNumQuestions());
-    EXPECT_EQ("The sky is blue.", quiz->getQuestions()[0]->getQuestion());
-    EXPECT_EQ(10, quiz->getQuestions()[0]->getScore());
-    
-    delete quiz;
-}
 
 // Test quizToJSON
 TEST(QuizConstructorTest, quizToJSON) {
@@ -28,6 +18,16 @@ TEST(QuizConstructorTest, quizToJSON) {
 
     delete quiz;
     delete newQuiz;
+}
+// Test JSONToQuiz
+TEST(QuizConstructorTest, JSONToQuiz) {
+    QuizConstructor quizConstructor;
+    Quiz *quiz = quizConstructor.JSONToQuiz("./data/quiz.json");
+    EXPECT_EQ(1, quiz->getNumQuestions());
+    EXPECT_EQ("The sky is blue.", quiz->getQuestions()[0]->getQuestion());
+    EXPECT_EQ(10, quiz->getQuestions()[0]->getScore());
+    
+    delete quiz;
 }
 
 // Test createQuiz
