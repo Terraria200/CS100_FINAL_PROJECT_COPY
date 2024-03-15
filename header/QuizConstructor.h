@@ -9,15 +9,11 @@
 using namespace std;
 
 class QuizConstructor{
-    private: // Pretty sure that generally, variables are private while functions are public
-        Quiz *quiz;
     public:
         QuizConstructor();
         Quiz *JSONToQuiz(string filename);
         void quizToJSON(Quiz *quiz, string filename);
         Quiz *createQuiz(ostream &os, istream &is, string title);
-        void setAnswer();
-        void editQuestion();
 
         Question* createTrueFalseQuestion(ostream &os, istream &is);
         Question* createMultipleChoiceQuestion(ostream &os, istream &is);
