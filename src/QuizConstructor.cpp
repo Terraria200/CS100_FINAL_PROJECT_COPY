@@ -1,7 +1,7 @@
 #include "../header/json.hpp"
 #include <iostream>
 #include <fstream>
-#include "QuizConstructor.h"
+#include "../header/QuizConstructor.h"
 
 QuizConstructor::QuizConstructor(){
 }
