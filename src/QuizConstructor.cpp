@@ -213,10 +213,10 @@ void QuizConstructor::editQuiz(ostream& os, istream& is, Quiz *quiz){
             //     // Create a new multiple choice question
             //     q = createMultipleChoiceQuestion(os, is);
             // } 
-            // else if(type == "fill-in-the-blank"){
-            //     // Create a new fill in the blank question
-            //     q = createFillInTheBlankQuestion(os, is);
-            // }
+            else if(type == "fill-in-the-blank"){
+                // Create a new fill in the blank question
+                q = createFillInTheBlankQuestion(os, is);
+            }
             else{
                 throw runtime_error("Invalid question type");
             }
@@ -267,10 +267,10 @@ void QuizConstructor::editQuiz(ostream& os, istream& is, Quiz *quiz){
             //     // Create a new multiple choice question
             //     q = createMultipleChoiceQuestion(os, is);
             // } 
-            // else if(type == "fill-in-the-blank"){
-            //     // Create a new fill in the blank question
-            //     q = createFillInTheBlankQuestion(os, is);
-            // }
+            else if(type == "fill-in-the-blank"){
+                // Create a new fill in the blank question
+                q = createFillInTheBlankQuestion(os, is);
+            }
             else{
                 throw runtime_error("Invalid question type");
             }
