@@ -7,9 +7,6 @@ QuizConstructor::QuizConstructor(){
 }
 
 Quiz * QuizConstructor::JSONToQuiz(string filename){
-    // Create a new quiz object
-    Quiz *quiz = new Quiz();
-
     // Open the file
     ifstream file(filename);
 
@@ -18,6 +15,9 @@ Quiz * QuizConstructor::JSONToQuiz(string filename){
         // Create a json object
         nlohmann::json j;
         file >> j;
+
+        // Create a new quiz object
+        Quiz *quiz = new Quiz(j["title"]);
 
         // Get the questions from the json object
         nlohmann::json questions = j["questions"];
@@ -64,6 +64,9 @@ Quiz * QuizConstructor::JSONToQuiz(string filename){
 void QuizConstructor::quizToJSON(Quiz* quiz, string filename) {
     // Create a json object
     nlohmann::json j;
+
+    // Set the quiz title
+    j["title"] = quiz->getTitle();
 
     // Create a json array
     nlohmann::json questions;
