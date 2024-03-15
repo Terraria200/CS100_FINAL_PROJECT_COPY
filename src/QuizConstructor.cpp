@@ -39,10 +39,10 @@ Quiz * QuizConstructor::JSONToQuiz(string filename){
             //     // Create a new multiple choice question
             //     q = new MultiChoice(it.value()["question"], it.value()["points"], it.value()["options"], it.value()["answer"]);
             // } 
-            // else if(type == "fill-in-the-blank"){
-            //     // Create a new short answer question
-            //     q = new FillInTheBlank(it.value()["question"], it.value()["points"], it.value()["answer"]);
-            // }
+            else if(type == "fill-in-the-blank"){
+                // Create a new short answer question
+                q = new FillInTheBlank(it.value()["question"], it.value()["points"], it.value()["answer"]);
+            }
 
             // Add the question to the quiz
             quiz->addQuestion(q);
@@ -96,10 +96,10 @@ void QuizConstructor::quizToJSON(Quiz* quiz, string filename) {
         //     // Set the answer
         //     question["answer"] = dynamic_cast<MultiChoice*>(q)->getAnswer();
         // } 
-        // else if(q->getType() == "fill-in-the-blank"){
-        //     // Set the answer
-        //     question["answer"] = dynamic_cast<FillInTheBlank*>(q)->getAnswer();
-        // }
+        else if(q->getType() == "fill-in-the-blank"){
+            // Set the answer
+            question["answer"] = q->getAnswer();
+        }
 
         // Add the question to the json array
         questions.push_back(question);
@@ -149,10 +149,10 @@ Quiz * QuizConstructor::createQuiz(ostream &os, istream &is, string title){
         //     // Create a new multiple choice question
         //     q = createMultipleChoiceQuestion(os, is);
         // } 
-        // else if(type == "fill-in-the-blank"){
-        //     // Create a new fill in the blank question
-        //     q = createFillInTheBlankQuestion(os, is);
-        // }
+        else if(type == "fill-in-the-blank"){
+            // Create a new fill in the blank question
+            q = createFillInTheBlankQuestion(os, is);
+        }
         else{
             throw runtime_error("Invalid question type");
         }
@@ -253,4 +253,19 @@ Question* QuizConstructor::createTrueFalseQuestion(ostream &os, istream &is){
     is >> score;
 
     return new TrueOrFalse(question, score, stoi(answer));
+}
+
+Question* QuizConstructor::createFillInTheBlankQuestion(ostream &os, istream &is) {
+    string question;
+    string answer;
+    int score;
+
+    os << "Enter the question: ";
+    getline(is, question, '\n');
+    os << "Enter the answer: ";
+    getline(is, answer, '\n');
+    os << "Enter the score: ";
+    is >> score;
+
+    return new FillInTheBlank(question, score, answer);    
 }

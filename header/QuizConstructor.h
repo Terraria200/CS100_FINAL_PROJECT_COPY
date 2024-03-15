@@ -5,6 +5,7 @@
 #include<cstdlib>
 #include "Quiz.h"
 #include "True-or-False.h"
+#include "Fill-in-the-Blank.h"
 using namespace std;
 
 class QuizConstructor{

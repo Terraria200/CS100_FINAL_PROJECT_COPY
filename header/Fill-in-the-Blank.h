@@ -7,6 +7,6 @@ class FillInTheBlank : public Question {
     public:
         FillInTheBlank(std::string content, int score, std::string answer);
         bool checkAnswer(std::string answer);
-        std::string GetAnswer();
+        std::string getAnswer();
         std::string getType();
 };
