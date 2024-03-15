@@ -1,4 +1,3 @@
-// We put header guards at beginning and end of this file to ensure that we only create it if it's not defined
 #ifndef QUIZCONSTRUCTOR_HPP
 #define QUIZCONSTRUCTOR_HPP
 
@@ -8,6 +7,7 @@
 #include "../header/Question.h"
 #include "True-or-False.h"
 #include "Fill-in-the-Blank.h"
+#include "MultiChoice.h"
 using namespace std;
 
 

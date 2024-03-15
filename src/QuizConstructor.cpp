@@ -35,10 +35,16 @@ Quiz * QuizConstructor::JSONToQuiz(string filename){
                 // Create a new true or false question
                 q = new TrueOrFalse(it.value()["question"], it.value()["points"], it.value()["answer"]);
             } 
-            // else if(type == "multiple-choice"){
-            //     // Create a new multiple choice question
-            //     q = new MultiChoice(it.value()["question"], it.value()["points"], it.value()["options"], it.value()["answer"]);
-            // } 
+            else if(type == "multiple-choice"){
+                // Read options into a vector, every option separated by newline character in json file
+                std::vector<std::string> options;
+                for (std::string option : it.value()["options"]) {
+                    options.push_back(option);
+                }
+
+                // Create a new multiple choice question
+                q = new MultiChoice(it.value()["question"], it.value()["points"], options, it.value()["answer"]);
+            } 
             else if(type == "fill-in-the-blank"){
                 // Create a new short answer question
                 q = new FillInTheBlank(it.value()["question"], it.value()["points"], it.value()["answer"]);
@@ -92,13 +98,22 @@ void QuizConstructor::quizToJSON(Quiz* quiz, string filename) {
             
             question["answer"] = answer;
         } 
-        // else if(q->getType() == "multiple-choice"){
-        //     // Set the options
-        //     question["options"] = dynamic_cast<MultiChoice*>(q)->getOptions();
+        else if(q->getType() == "multiple-choice"){
+            question["question"] = dynamic_cast<MultiChoice*>(q)->getQuestionWithoutOptions();
 
-        //     // Set the answer
-        //     question["answer"] = dynamic_cast<MultiChoice*>(q)->getAnswer();
-        // } 
+            // New json array for options
+            nlohmann::json options;
+
+            for (string option : dynamic_cast<MultiChoice*>(q)->getOptions()) {
+                options.push_back(option);
+            }
+
+            // Set the options
+            question["options"] = options;
+
+            // Set the answer
+            question["answer"] = dynamic_cast<MultiChoice*>(q)->getIntAnswer();
+        } 
         else if(q->getType() == "fill-in-the-blank"){
             // Set the answer
             question["answer"] = q->getAnswer();
@@ -148,10 +163,10 @@ Quiz * QuizConstructor::createQuiz(ostream &os, istream &is, string title){
             // Create a new true or false question
             q = createTrueFalseQuestion(os, is);
         } 
-        // else if(type == "multiple-choice"){
-        //     // Create a new multiple choice question
-        //     q = createMultipleChoiceQuestion(os, is);
-        // } 
+        else if(type == "multiple-choice"){
+            // Create a new multiple choice question
+            q = createMultipleChoiceQuestion(os, is);
+        } 
         else if(type == "fill-in-the-blank"){
             // Create a new fill in the blank question
             q = createFillInTheBlankQuestion(os, is);
@@ -209,14 +224,14 @@ void QuizConstructor::editQuiz(ostream& os, istream& is, Quiz *quiz){
                 // Create a new true or false question
                 q = createTrueFalseQuestion(os, is);
             } 
-            // else if(type == "multiple-choice"){
-            //     // Create a new multiple choice question
-            //     q = createMultipleChoiceQuestion(os, is);
-            // } 
-            // else if(type == "fill-in-the-blank"){
-            //     // Create a new fill in the blank question
-            //     q = createFillInTheBlankQuestion(os, is);
-            // }
+            else if(type == "multiple-choice"){
+                // Create a new multiple choice question
+                q = createMultipleChoiceQuestion(os, is);
+            } 
+            else if(type == "fill-in-the-blank"){
+                // Create a new fill in the blank question
+                q = createFillInTheBlankQuestion(os, is);
+            }
             else{
                 throw runtime_error("Invalid question type");
             }
@@ -263,14 +278,14 @@ void QuizConstructor::editQuiz(ostream& os, istream& is, Quiz *quiz){
                 // Create a new true or false question
                 q = createTrueFalseQuestion(os, is);
             } 
-            // else if(type == "multiple-choice"){
-            //     // Create a new multiple choice question
-            //     q = createMultipleChoiceQuestion(os, is);
-            // } 
-            // else if(type == "fill-in-the-blank"){
-            //     // Create a new fill in the blank question
-            //     q = createFillInTheBlankQuestion(os, is);
-            // }
+            else if(type == "multiple-choice"){
+                // Create a new multiple choice question
+                q = createMultipleChoiceQuestion(os, is);
+            } 
+            else if(type == "fill-in-the-blank"){
+                // Create a new fill in the blank question
+                q = createFillInTheBlankQuestion(os, is);
+            }
             else{
                 throw runtime_error("Invalid question type");
             }
@@ -326,4 +341,34 @@ Question* QuizConstructor::createFillInTheBlankQuestion(ostream &os, istream &is
     is >> score;
 
     return new FillInTheBlank(question, score, answer);    
+}
+
+Question* QuizConstructor::createMultipleChoiceQuestion(ostream &os, istream &is) {
+    string question;
+    int score;
+    vector<string> options;
+    int answer;
+
+    os << "Enter the question: ";
+    getline(is, question, '\n');
+    os << "Enter the score: ";
+    is >> score;
+    is.ignore();
+
+    os << "Enter the number of options: ";
+    int numOptions;
+    is >> numOptions;
+    is.ignore();
+
+    for(int i = 0; i < numOptions; i++){
+        os << "Enter option " << i + 1 << ": ";
+        string option;
+        getline(is, option, '\n');
+        options.push_back(option);
+    }
+
+    os << "Enter the answer: ";
+    is >> answer;
+
+    return new MultiChoice(question, score, options, answer - 1);
 }
