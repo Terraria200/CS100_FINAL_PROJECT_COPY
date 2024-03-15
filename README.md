@@ -54,8 +54,6 @@ SOLID Principle Changes explanation:
 
 
  ## Installation/Usage
- > Instructions on installing and running your application
-
 1. Download Visual Studio (VS) Code for your computer.
 2. Press the button at the bottom left of VS Code, then press “Connect to the Host,” “+ Add New SSH Host,” and then enter in “ssh <your_CS_username>@cs100.cs.ucr.edu” Afterwards, connect to the host by logging in with your CS password.
 3. At the top left of your screen, press the 2nd button from the top to access the “Explorer”
@@ -63,7 +61,8 @@ SOLID Principle Changes explanation:
 5. Clone the repository into your desired folder using its url: “https://github.com/cs100/final-project-gwils018-haham003-kwils076-nster005.git”
 6. Press “Control (or Command) + Shift + P” to access the menu of options. Select “Terminal: Create New Terminal”
 7. Clone in the googleTest repository using “git submodule add https://github.com/google/googletest.git” for testing and running purposes
-8. Run these commands to compile, test, and run the application: “cmake.”, “make”, “./bin/runAllTests”, “./bin/application”, valgrind, memcheck
+8. Place the newly created "googletest" folder into the "test" folder. Ensure that it is the only "googletest" folder inside of there and that there is a "CMakeLists.txt" file inside of it.
+9. Run these commands to compile, test, and run the application: “cmake.”, “make”, “./bin/runAllTests”, “./bin/application”. The valgrind command we use to ensure no memory leaks is "valgrind --leak-check=full ./bin/runAllTests ./bin/application"
 
  ## Testing
  > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
