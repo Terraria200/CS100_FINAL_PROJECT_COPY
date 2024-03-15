@@ -8,4 +8,5 @@ class FillInTheBlank : public Question {
         FillInTheBlank(std::string content, int score, std::string answer);
         bool checkAnswer(std::string answer);
         std::string GetAnswer();
+        std::string getType();
 };

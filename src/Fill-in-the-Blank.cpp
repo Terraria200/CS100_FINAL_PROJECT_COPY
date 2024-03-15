@@ -22,3 +22,7 @@ bool FillInTheBlank::checkAnswer(std::string answer) {
 std::string FillInTheBlank::GetAnswer() {
     return this->answer;
 }
+
+std::string FillInTheBlank::getType() {
+    return "fill-in-the-blank";
+}
