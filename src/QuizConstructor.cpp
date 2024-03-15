@@ -7,9 +7,6 @@ QuizConstructor::QuizConstructor(){
 }
 
 Quiz * QuizConstructor::JSONToQuiz(string filename){
-    // Create a new quiz object
-    Quiz *quiz = new Quiz();
-
     // Open the file
     ifstream file(filename);
 
@@ -18,6 +15,9 @@ Quiz * QuizConstructor::JSONToQuiz(string filename){
         // Create a json object
         nlohmann::json j;
         file >> j;
+
+        // Create a new quiz object
+        Quiz *quiz = new Quiz(j["title"]);
 
         // Get the questions from the json object
         nlohmann::json questions = j["questions"];
@@ -39,10 +39,10 @@ Quiz * QuizConstructor::JSONToQuiz(string filename){
             //     // Create a new multiple choice question
             //     q = new MultiChoice(it.value()["question"], it.value()["points"], it.value()["options"], it.value()["answer"]);
             // } 
-            // else if(type == "fill-in-the-blank"){
-            //     // Create a new short answer question
-            //     q = new FillInTheBlank(it.value()["question"], it.value()["points"], it.value()["answer"]);
-            // }
+            else if(type == "fill-in-the-blank"){
+                // Create a new short answer question
+                q = new FillInTheBlank(it.value()["question"], it.value()["points"], it.value()["answer"]);
+            }
 
             // Add the question to the quiz
             quiz->addQuestion(q);
@@ -50,6 +50,7 @@ Quiz * QuizConstructor::JSONToQuiz(string filename){
 
         // Close the file
         file.close();
+        return quiz;
     }
     else{
         // Output current working directory
@@ -58,12 +59,14 @@ Quiz * QuizConstructor::JSONToQuiz(string filename){
         return nullptr;
     }
 
-    return quiz;
 }
 
 void QuizConstructor::quizToJSON(Quiz* quiz, string filename) {
     // Create a json object
     nlohmann::json j;
+
+    // Set the quiz title
+    j["title"] = quiz->getTitle();
 
     // Create a json array
     nlohmann::json questions;
@@ -96,10 +99,10 @@ void QuizConstructor::quizToJSON(Quiz* quiz, string filename) {
         //     // Set the answer
         //     question["answer"] = dynamic_cast<MultiChoice*>(q)->getAnswer();
         // } 
-        // else if(q->getType() == "fill-in-the-blank"){
-        //     // Set the answer
-        //     question["answer"] = dynamic_cast<FillInTheBlank*>(q)->getAnswer();
-        // }
+        else if(q->getType() == "fill-in-the-blank"){
+            // Set the answer
+            question["answer"] = q->getAnswer();
+        }
 
         // Add the question to the json array
         questions.push_back(question);
@@ -149,10 +152,10 @@ Quiz * QuizConstructor::createQuiz(ostream &os, istream &is, string title){
         //     // Create a new multiple choice question
         //     q = createMultipleChoiceQuestion(os, is);
         // } 
-        // else if(type == "fill-in-the-blank"){
-        //     // Create a new fill in the blank question
-        //     q = createFillInTheBlankQuestion(os, is);
-        // }
+        else if(type == "fill-in-the-blank"){
+            // Create a new fill in the blank question
+            q = createFillInTheBlankQuestion(os, is);
+        }
         else{
             throw runtime_error("Invalid question type");
         }
@@ -162,70 +165,6 @@ Quiz * QuizConstructor::createQuiz(ostream &os, istream &is, string title){
     }
 
     return quiz;
-}
-
-void QuizConstructor::setAnswer(){
-    string correctAnswer;
-    getline(cin, correctAnswer, '\n');
-}
-
-void QuizConstructor::editQuestion(){
-    int questionToEdit;
-    char menuChoice = 'g';
-    char answerToEdit;
-    while(menuChoice != 'q'){
-        cout << "Select a question to edit from 1- " << quiz->getNumQuestions() << ": ";
-        cin >> questionToEdit;
-        cout << endl;
-        while(menuChoice != 'm'){
-            if(questionToEdit >= 1 && questionToEdit <= quiz->getNumQuestions()){
-                cout << "Select 'q' to edit the question, 'a' to edit the answers, 'm' to quit: ";
-                cin >> menuChoice;
-                cout << endl;
-                if(menuChoice == 'q'){
-                    cout << "Old question is \"";
-                    quiz->displayQuestion(questionToEdit, cout);
-                    cout << "\" Enter the new or edited question: ";
-
-                    // TEMPORARY FIX: only TrueOrFalse questions are supported at the moment
-                    string newQuestion;
-                    getline(cin, newQuestion);
-                    quiz->editQuestion(questionToEdit, new TrueOrFalse(newQuestion, 1, true));
-
-                    cout << endl;
-                    cout << "Changes saved! Select 'q' to edit the question, 'a' to edit the answers, 'm' to quit: ";
-                }
-                else if(menuChoice == 'a'){
-                    cout << "Which options would you like to edit? Press 'q' when ready to quit editing" << endl;
-
-                    char alphabet = 'a';
-                    
-                    // ENDLESS LOOP
-                    // while(menuChoice != 'q'){
-                    //     for(unsigned int i = 0; i < options.size(); ++i){
-                    //         cin >> answerToEdit;
-                    //         cout << alphabet << ". " << options[i] << endl;
-                    //         if(answerToEdit == alphabet){
-                    //             cout << "What would you like to change it too? ";
-                    //             getline(cin, options[i]);
-                    //             cout << "Changes saved! Which options would you like to edit? Press 'q' when ready to quit editing" << endl;
-                    //         }
-                    //     ++alphabet;
-                    //     }
-                    // }
-                }
-                else if(menuChoice == 'm'){
-                    menuChoice = 'q'; // Quit out of the editing process
-                }
-                else {
-                    menuChoice == 'b'; // Not a valid question number, so try edit process again
-                }
-            }
-            else{
-                menuChoice= 'b'; // Not a valid question number, so try edit process again
-            }
-        }
-    }
 }
 
 Question* QuizConstructor::createTrueFalseQuestion(ostream &os, istream &is){
@@ -253,4 +192,19 @@ Question* QuizConstructor::createTrueFalseQuestion(ostream &os, istream &is){
     is >> score;
 
     return new TrueOrFalse(question, score, stoi(answer));
+}
+
+Question* QuizConstructor::createFillInTheBlankQuestion(ostream &os, istream &is) {
+    string question;
+    string answer;
+    int score;
+
+    os << "Enter the question: ";
+    getline(is, question, '\n');
+    os << "Enter the answer: ";
+    getline(is, answer, '\n');
+    os << "Enter the score: ";
+    is >> score;
+
+    return new FillInTheBlank(question, score, answer);    
 }
