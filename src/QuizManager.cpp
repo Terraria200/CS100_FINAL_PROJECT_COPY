@@ -70,7 +70,9 @@ void QuizManager::editQuiz() {
         std::cout << "\nThere are no quizzes to edit." << std::endl;
         return;
     }
-            
+
+    displayQuizzes(std::cout);
+        
     std::cout << "\nWhich quiz would you like to edit?" << endl;
 
     string quizName;
