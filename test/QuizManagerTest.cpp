@@ -17,7 +17,7 @@ TEST(QuizManagerTest, emptyRun) {
     std::stringstream input;
     std::stringstream output;
     quizManager.run(output, input);
-    std::string expected = "No quizzes available.\n";
+    std::string expected = "\nNo quizzes available.\n";
     ASSERT_EQ(expected, output.str());
 }
 

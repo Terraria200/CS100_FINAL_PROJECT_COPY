@@ -6,20 +6,18 @@
 #include "Quiz.h"
 #include "../header/True-or-False.h"
 #include "../header/Question.h"
+#include "True-or-False.h"
+#include "Fill-in-the-Blank.h"
 using namespace std;
 
 
 
 class QuizConstructor{
-    private: // Pretty sure that generally, variables are private while functions are public
-        Quiz *quiz;
     public:
         QuizConstructor();
         Quiz *JSONToQuiz(string filename);
         void quizToJSON(Quiz *quiz, string filename);
         Quiz *createQuiz(ostream &os, istream &is, string title);
-        void setAnswer();
-
         void editQuiz(ostream& os, istream& is, Quiz *quiz);
 
         Question* createTrueFalseQuestion(ostream &os, istream &is);
