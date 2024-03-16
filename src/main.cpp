@@ -22,6 +22,7 @@ int main()
                     "\n'c' to create a quiz"
                     "\n'v' to view quizzes"
                     "\n'e' to edit a quiz"
+                    "\n'r' to remove a quiz"
                     "\nOR"
                     "\n'q' to quit: ";
 
@@ -81,6 +82,14 @@ int main()
         {
             quiz_list.editQuiz();
             
+            std::cout << "\nPress ENTER to return to the main menu." << std::endl;
+            std::cin.clear();
+            std::cin.get();
+        }
+        else if (menuInput[0] == 'r')
+        {
+            quiz_list.removeQuiz();
+
             std::cout << "\nPress ENTER to return to the main menu." << std::endl;
             std::cin.clear();
             std::cin.get();
