@@ -65,5 +65,5 @@ SOLID Principle Changes explanation:
 9. Run these commands to compile, test, and run the application: “cmake.”, “make”, “./bin/runAllTests”, “./bin/application”. The valgrind command we use to ensure no memory leaks is "valgrind --leak-check=full ./bin/runAllTests ./bin/application"
 
  ## Testing
- > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
+ We used Google Testing and thus unit tests to validate that our outputs to the screen were correct and that certain values like scores and answers were correct.
  
