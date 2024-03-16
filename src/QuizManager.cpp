@@ -44,12 +44,18 @@ void QuizManager::addQuiz(string quizName) {
     quizzes.push_back(new Quiz(quizName));
 }
 
-void QuizManager::removeQuiz(string quizName) {
+void QuizManager::removeQuiz() {
     if (quizzes.size() == 0)
     {
         std::cout << "\nThere are no quizzes to remove." << std::endl;
         return;
     }
+
+    displayQuizzes(std::cout);
+    std::cout << "Which quiz would you like to remove?" << std::endl;
+    string quizName;
+    std::cin >> quizName;
+
     
     for (auto it = quizzes.begin(); it != quizzes.end(); ) {
         if ((*it)->getTitle() == quizName) {

@@ -13,7 +13,7 @@ class QuizManager {
         void run(ostream& os, istream& is);
         void displayQuizzes(ostream& os);
         void addQuiz(string quizName);
-        void removeQuiz(string quizName);
+        void removeQuiz();
         void editQuiz();
         void uploadQuiz(string filepath);
         void downloadQuiz(string filepath);

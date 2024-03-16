@@ -9,7 +9,7 @@ add_library(simpleLibrary
   QuizManager.cpp
 )
 
-add_executable(application
+add_executable(THE_MIND_MELD
 Fill-in-the-Blank.cpp
 main.cpp
 MultiChoice.cpp
